@@ -58,3 +58,17 @@ jobs:
           
           chmod +x "$BUILD_SCRIPT"
           $BUILD_SCRIPT "$ROOT_DEP" $JOB_SLOTS
+          
+      - name: Archive Build Output
+        run: |
+         cd code/build/server/linux
+         tar -czf fivem-linux-server.tar.gz *
+
+      - name: Create Release
+        uses: ncipollo/release-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: v${{ github.run_number }}
+          name: FiveM Linux Server Release v${{ github.run_number }}
+          files: code/build/server/linux/fivem-linux-server.tar.gz
+          
