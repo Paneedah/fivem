@@ -61,7 +61,7 @@ jobs:
           
       - name: Archive Build Output
         run: |
-         cd code/build/server/linux
+         cd code/bin/server/linux
          tar -czf fivem-linux-server.tar.gz *
 
       - name: Create Release
