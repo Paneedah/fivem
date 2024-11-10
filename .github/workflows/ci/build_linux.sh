@@ -70,6 +70,7 @@ else
 	cp -a $ROOT_NATIVE_GEN/../natives/inp/natives_cfx_new.lua $ROOT_NATIVE_GEN/../natives/inp/natives_cfx.lua
 fi
 
+echo three
 
 cd $ROOT_REPO/ext/natives
 
@@ -88,6 +89,8 @@ using ContextType = CitizenFX.Core.fxScriptContext;
 namespace CitizenFX.Core.Native
 {
 EOF
+
+echo four
   
 lua5.3 codegen.lua inp/natives_global.lua enum server >> $ROOT_REPO/code/client/clrcore/NativesServer.cs
 lua5.3 codegen.lua inp/natives_global.lua cs server >> $ROOT_REPO/code/client/clrcore/NativesServer.cs
@@ -100,6 +103,8 @@ EOF
 lua5.3 codegen.lua inp/natives_global.lua cs_v2 server > $ROOT_REPO/code/client/clrcore-v2/Native/NativesServer.cs
 
 lua5.3 codegen.lua inp/natives_global.lua rpc server > ~/natives/cfx-server/citizen/scripting/rpc_natives.json
+
+echo five
 
 # done with natives
 
@@ -120,6 +125,8 @@ cd ..
 
 rm -rf premake-*
 
+echo six
+
 ## SETUP-CUTOFF
 
 # build CitizenFX
@@ -132,11 +139,17 @@ export CFLAGS="-fno-plt"
 export CXXFLAGS="-D_LIBCPP_ENABLE_CXX17_REMOVED_AUTO_PTR -Wno-deprecated-declarations -Wno-invalid-offsetof -fno-plt"
 export LDFLAGS="-Wl,--build-id -fuse-ld=lld -ldl"
 
+echo seven
+
 # Allows compilation of the node module and with it the whole solution
 # We use the includes from our v8-9.3 vendor package and use libnode-dev's .so files (apt-get)
 # Execution is not tested nor meant to work with this step, pure compilation and linkage
 export CXXFLAGS="$CXXFLAGS -I$ROOT_REPO/vendor/v8/9.3/include/"
 
+echo cleaning..
+
 make clean
 make clean config=release verbose=1
 make -j${JOB_SLOTS} config=release
+
+echo complete
