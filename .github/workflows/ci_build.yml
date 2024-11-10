@@ -54,7 +54,7 @@ jobs:
           
           # messes with current build tools, so clear it
           BUILD_SCRIPT=".github/workflows/ci/build_$PLATFORM.sh"
-          PLATFORM= # clear out, some other scripts consider this variable
+          PLATFORM="linux"
           
           chmod +x "$BUILD_SCRIPT"
           $BUILD_SCRIPT "$ROOT_DEP" $JOB_SLOTS
