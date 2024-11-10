@@ -61,7 +61,7 @@ jobs:
           
       - name: Archive Build Output
         run: |
-         cd code/bin/server/linux
+         cd ~/b/server/code/bin/server/linux/release
          tar -czf fivem-linux-server.tar.gz *
 
       - name: Create Release
@@ -70,5 +70,5 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: v${{ github.run_number }}
           name: FiveM Linux Server Release v${{ github.run_number }}
-          files: code/bin/server/linux/fivem-linux-server.tar.gz
+          files: ~/b/server/code/bin/server/linux/release/fivem-linux-server.tar.gz
           
