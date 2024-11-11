@@ -70,5 +70,5 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: v${{ github.run_number }}
           name: FiveM Linux Server Release v${{ github.run_number }}
-          files: ~/b/server/code/bin/server/linux/release/fivem-linux-server.tar.gz
+          artifact: ~/b/server/code/bin/server/linux/release/fivem-linux-server.tar.gz
           
